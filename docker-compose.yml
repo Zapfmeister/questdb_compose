@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  questdb:
+    image: questdb/questdb
+    container_name: questdb
+    restart: always
+    ports:
+      - 9000:9000
+      - 9009:9009
+      - 8812:8812
+      - 9003:9003
+    volumes:
+      - ./questdb:/root/.questdb
+    environment:
+      - QDB_LOG_W_STDOUT_LEVEL=ERROR
+      - QDB_LOG_W_FILE_LEVEL=ERROR
+      - QDB_LOG_W_HTTP_MIN_LEVEL=ERROR
+      - QBD_SHARED_WORKER_COUNT=2 # Amount of worker threads
+      - QBD_PG_USER=${username} # postgresql user -> Configured in .env file
+      - QBD_PG_PASSWORD=${password} # postgresql password -> Configured in .env file
+      - QBD_TELEMETRY_ENABLED=false # Disable telemetry
+      # - QBD_HTTP_ENABLED=false # Disable http server gui and rest interface
+      # - QBD_HTTP_BIND_TO=0.0.0.0:9000 # http server
+      # - QBD_HTTP_SECURITY_READONLY=true # HTTP read only mode
+      # - QBD_HTTP_MIN_ENABLED=false # Disable http health server
+      # - QBD_HTTP_MIN_BIND_TO=0.0.0.0:9003 # http health server
+      - QBD_PG_ENABLED=false # Disable postgresql
+      # - QBD_PG_NET_BIND_TO=0.0.0.0:8812 # postgresql server
+      # - QBD_LINE_TCP_ENABLED=false # Disable influxdb tcp server
+      # - QBD_LINE_TCP_NET_BIND_TO=0.0.0.0:9009 # influxdb tcp server
+      # - QBD_LINE_UDP_ENABLED=false # Disable influxdb udp server
+      # - QBD_LINE_UDP_NET_BIND_TO=0.0.0.0:9009 # influxdb udp server
+
+      ## Additional variables can be found here: https://questdb.io/docs/reference/configuration
