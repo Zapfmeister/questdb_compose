@@ -25,7 +25,7 @@ services:
       # - QDB_HTTP_SECURITY_READONLY=true # HTTP read only mode
       # - QDB_HTTP_MIN_ENABLED=false # Disable http health server
       # - QDB_HTTP_MIN_BIND_TO=0.0.0.0:9003 # http health server
-      - QDB_PG_ENABLED=false # Disable postgresql
+      # - QDB_PG_ENABLED=false # Disable postgresql
       # - QDB_PG_NET_BIND_TO=0.0.0.0:8812 # postgresql server
       # - QBD_LINE_TCP_ENABLED=false # Disable influxdb tcp server
       # - QBD_LINE_TCP_NET_BIND_TO=0.0.0.0:9009 # influxdb tcp server
